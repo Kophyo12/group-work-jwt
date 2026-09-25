@@ -1,14 +1,15 @@
+require("dotenv").config();
 const express = require("express");
 const connectDB = require("./config/db");
 const Student = require("./models/Student");
+const authRoutes = require("./routes/auth");
 
 const app = express();
 const PORT = 3000;
 
-// Connect to MongoDB
 connectDB();
 
-// Middleware to read JSON data
+app.use(express.json());
 app.use(express.json());
 
 // Home route
@@ -70,6 +71,8 @@ app.get("/api/students/:id", async (req, res) => {
         });
     }
 });
+
+app.use("/api/auth", authRoutes);
 
 // Handle routes that do not exist
 app.use((req, res) => {
