@@ -3,7 +3,8 @@ const express = require("express");
 const connectDB = require("./config/db");
 const Student = require("./models/Student");
 const authRoutes = require("./routes/auth");
-const auth = require("./middleware/auth");
+const auth = require("./middleware/auth")
+
 
 const app = express();
 const PORT = 3000;
