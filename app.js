@@ -3,6 +3,7 @@ const express = require("express");
 const connectDB = require("./config/db");
 const Student = require("./models/Student");
 const authRoutes = require("./routes/auth");
+const auth = require("./middleware/auth");
 
 const app = express();
 const PORT = 3000;
@@ -41,7 +42,7 @@ app.get("/api/students", async (req, res) => {
 });
 
 // POST a new student
-app.post("/api/students", async (req, res) => {
+app.post("/api/students", auth, async (req, res) => {
     try {
         const created = await Student.create(req.body);
 
